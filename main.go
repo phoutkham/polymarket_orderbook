@@ -9,7 +9,6 @@ import (
 
 func main() {
 	var slugs []string = []string{
-		"sea-sas-com-2026-04-17-com",
 		"nba-cha-orl-2026-04-17",
 		"nba-gsw-phx-2026-04-17",
 		"cs2-vit-navi-2026-04-17",
