@@ -9,14 +9,8 @@ import (
 
 func main() {
 	var slugs []string = []string{
-		"sea-sas-com-2026-04-17-com",
-		"atp-sil-houkes-2026-04-17",
-		"nba-cha-orl-2026-04-17",
-		"nba-gsw-phx-2026-04-17",
-		"cs2-vit-navi-2026-04-17",
-		"dota2-ts8-vg-2026-04-18",
-		"lol-ae2-tts1-2026-04-17",
-		"val-c9-nv2-2026-04-17",
+		"epl-cry-wes-2026-04-20-cry",
+		"epl-cry-wes-2026-04-20-wes",
 	}
 
 	polymarket := polymarket.NewPolymarketAPI()
@@ -49,7 +43,7 @@ func main() {
 			}
 		}
 
-		time.Sleep(500 * time.Millisecond)
+		time.Sleep(200 * time.Millisecond)
 	}
 
 }
