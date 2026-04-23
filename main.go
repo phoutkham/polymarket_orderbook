@@ -9,8 +9,8 @@ import (
 
 func main() {
 	var slugs []string = []string{
-		"epl-bou-lee-2026-04-22-bou",
-		"epl-bou-lee-2026-04-22-lee",
+		"lal-lev-sev-2026-04-23-lev",
+		"lal-lev-sev-2026-04-23-sev",
 	}
 
 	polymarket := polymarket.NewPolymarketAPI()
