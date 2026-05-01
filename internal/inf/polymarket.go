@@ -26,7 +26,7 @@ type Event struct {
 	Outcomes      string  `json:"outcomes"`
 	OutcomePrices string  `json:"outcomePrices"`
 	ClobTokenIds  string  `json:"clobTokenIds"`
-	StartTime     string  `json:"gameStartTime"`
+	StartTime     string  `json:"eventStartTime"`
 	TakerBaseFee  int64   `json:"takerBaseFee"`
 	MakerBaseFee  int64   `json:"makerBaseFee"`
 	TickSize      float64 `json:"orderPriceMinTickSize"`
@@ -35,4 +35,8 @@ type Event struct {
 
 type Token struct {
 	TokenId string `json:"token_id"`
+}
+
+type Price struct {
+	Price string `json:"price"`
 }

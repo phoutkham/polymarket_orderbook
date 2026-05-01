@@ -5,13 +5,12 @@ import (
 	"math"
 	"polymarket_orderbook/internal/inf"
 	"strconv"
-	"time"
 )
 
-func DumpOrderbook(o *inf.OrderBook, offset int64, path string) {
+func DumpOrderbook(o *inf.OrderBook, offset int64, path string, btc int64) {
 	var data [101]int32
 	timestamp := make([]byte, len(data)*8)
-	binary.LittleEndian.PutUint64(timestamp[:8], uint64(time.Now().UnixMilli()))
+	binary.LittleEndian.PutUint64(timestamp[:8], uint64(btc))
 
 	for _, bid := range o.Bids {
 		price, _ := strconv.ParseFloat(bid.Price, 64)
@@ -36,7 +35,7 @@ func DumpOrderbook(o *inf.OrderBook, offset int64, path string) {
 	}
 
 	orderBookPath := path + "/orderbook.bin"
-	timestampPath := path + "/timestamp.bin"
+	timestampPath := path + "/btc.bin"
 	orderbookOffset := offset * (101 * 4)
 	timestampOffset := offset * 8
 

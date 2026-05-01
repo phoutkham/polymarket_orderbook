@@ -3,18 +3,18 @@ package main
 import (
 	"polymarket_orderbook/internal/polymarket"
 	"polymarket_orderbook/internal/watcher"
-	"strconv"
 	"time"
 )
 
 func main() {
-	var slugs []string = []string{
-		"lal-lev-sev-2026-04-23-lev",
-		"lal-lev-sev-2026-04-23-sev",
-	}
 
 	polymarket := polymarket.NewPolymarketAPI()
-	watcher := watcher.NewWatcher()
+	watcher := watcher.NewWatcher(polymarket)
+
+	var slugs []string = []string{
+		polymarket.FetchCurrentSlug(),
+		polymarket.FetchNextSlug(),
+	}
 
 	for _, s := range slugs {
 		watcher.Add(s, polymarket)
@@ -32,18 +32,13 @@ func main() {
 			for _, l := range watcher.Lists {
 				if l.Market.YesTokenId == o.TokenId {
 					l.Save(&o)
-
-					bestBid, _ := strconv.ParseFloat(o.Bids[len(o.Bids)-1].Price, 10)
-
-					if bestBid <= 0.01 || bestBid >= 0.99 {
-						l.IsClosed = true
-					}
-
 				}
 			}
 		}
 
-		time.Sleep(200 * time.Millisecond)
+		watcher.Clean(polymarket)
+
+		time.Sleep(100 * time.Millisecond)
 	}
 
 }
